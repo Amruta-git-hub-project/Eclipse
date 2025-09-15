@@ -2,8 +2,8 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
   <test thread-count="5" name="Test">
- <!-- <parameter name="username" value="mngr633019"/>
-  <parameter name="password" value="redygyp"></parameter>--> 
+ <parameter name="username" value="Abhishek"/>
+  <parameter name="password" value="Sonya"></parameter> 
   <classes>
 <!-- <class name="Selenium_Test_Pages.Amazon_Add_Cart_Test">    </class>  -->
 <!-- <class name="selnium.Demo_Login_Test"> </class>--> 

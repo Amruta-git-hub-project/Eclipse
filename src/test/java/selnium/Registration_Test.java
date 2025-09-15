@@ -20,6 +20,7 @@ public class Registration_Test extends Registration_BaseClass{
 	TransactionPage_Class TXC;
 	ProjectDetailsForm_Class PDC;
 	String sheetname="Registration"; 
+	String Addrowsheet="Add_Rows";
 	
 	//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 	
@@ -98,18 +99,44 @@ public class Registration_Test extends Registration_BaseClass{
 	    RFC = TXC.MenuClick();   // This already waits + returns fresh object
 
 	    System.out.println("Ready for next dataset");
+	   // PDC=TXC.GoToProjectDetails_Page();
+	}
+	
+	
+	
+	@DataProvider
+	public Object[][] GetRowData() throws InvalidFormatException
+	{
+		
+			Object data[][]=ExcelUtil.AddRow(Addrowsheet);
+	
+		
+		return data;
 	}
 	
 	@Test(priority=2)
-	public void ProjectDetails_Page()
+	public void NavigatetoPageDeatils()
 	{
 		PDC =new ProjectDetailsForm_Class(driver);
 
-		PDC=TXC.GoToProjectDetails_Page(); 
-		PDC.PageDetails();
+		PDC=TXC.GoToProjectDetails_Page();  
+		PDC.PageDetails(); 
+		
+	} 
+	
+	@Test(priority=3, dataProvider="GetRowData", dependsOnMethods="RegistrationFlow")
+	public void ProjectDetails_Page(String name,String role, String email, String location,String department)
+	{
+		/*
+		 * PDC =new ProjectDetailsForm_Class(driver);
+		 * 
+		 * PDC=TXC.GoToProjectDetails_Page();
+		 */
+		PDC.Add_Row(name,role,email,location,department);
+		PDC.Deselect_Row();
 	}
 	
-	 
+	  
 	/*
 	 * @Test(priority=2) public void Test1() { TXC= new
 	 * TransactionPage_Class(driver); String Transaction=TXC.GetTransaction_ID();

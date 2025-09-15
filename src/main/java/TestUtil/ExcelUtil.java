@@ -92,6 +92,7 @@ public class ExcelUtil extends Registration_BaseClass {
 	
 	
 	// New method to write back transaction id
+	
     public static void setCellData(String sheetName, int rowNum, int colNum, String value) {
         FileInputStream fis = null;
         FileOutputStream fos = null;
@@ -117,6 +118,36 @@ public class ExcelUtil extends Registration_BaseClass {
             }
         }
     }
+    
+    
+	public static String Sheet="Registration.xlsx";
+	public static String SHEET_PATH = "C:/Users/amnaik/eclipse-workspace/selnium/src/main/java/testdata/Add_Row_ProjectDetails.xlsx";  
+
+	public static Object[][] AddRow(String Sheet) throws org.apache.poi.openxml4j.exceptions.InvalidFormatException  {
+		FileInputStream file = null;
+		try {
+			file = new FileInputStream(SHEET_PATH);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace(); 
+		}
+		try {
+			book = WorkbookFactory.create(file);
+		} catch (IOException e) { 
+			e.printStackTrace();
+		}
+		sheet = book.getSheet(Sheet); 
+		Object[][] data = new Object[sheet.getLastRowNum()][sheet.getRow(0).getLastCellNum()];
+		 System.out.println(sheet.getLastRowNum() + "--------" );
+		// sheet.getRow(0).getLastCellNum());
+		for (int i = 0; i < sheet.getLastRowNum(); i++) { 
+			for (int k = 0; k < sheet.getRow(0).getLastCellNum(); k++) {
+				data[i][k] = sheet.getRow(i + 1).getCell(k).toString();
+				 System.out.println(data[i][k]);
+			}
+		}
+		return data;
+	} 
+	
 	
 	
 }
