@@ -102,23 +102,26 @@ public class ProjectDetailsForm_Class extends Registration_BaseClass{
 		{
 			WebElement Namecolumn=Multiple_Chkbox.findElement(By.xpath("./ancestor::td/following-sibling::td[1]"));
 			System.out.println(Namecolumn.getText()+"Tvale name"); 
-			if(Namecolumn.getText().contains("Abhishek"))
+			if(Namecolumn.getText().contains("Sonya"))
 			{
-				((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", Namecolumn);
+				((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", Multiple_Chkbox);
 
 				try {
 					//Thread.sleep(2000);
 					/*if(!Multiple_Chkbox.isSelected())
 					{*/
-						wait.until(ExpectedConditions.elementToBeClickable(Multiple_Chkbox)).click();
-						//Multiple_Chkbox.click(); 
+						wait.until(ExpectedConditions.elementToBeClickable(Multiple_Chkbox));
+						 // Small scroll adjustment so it's not hidden under sticky headers
+		                ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+
+		                Multiple_Chkbox.click();
 						System.out.println("checkbox.click"); 
 					//}  
 				
 				} catch (ElementClickInterceptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					 System.out.println("Normal click failed, trying JS click");
+					 System.out.println("Normal click failed, trying JS click"); 
 					 ((JavascriptExecutor) driver).executeScript("arguments[0].click();", Multiple_Chkbox);
 				}
 			

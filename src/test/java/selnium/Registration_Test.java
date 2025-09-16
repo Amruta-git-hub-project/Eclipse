@@ -133,9 +133,14 @@ public class Registration_Test extends Registration_BaseClass{
 		 * PDC=TXC.GoToProjectDetails_Page();
 		 */
 		PDC.Add_Row(name,role,email,location,department);
-		PDC.Deselect_Row();
 	}
 	
+	@Test(priority=4)
+	public void Deselect_Row()
+	{
+		PDC.Deselect_Row();
+
+	}
 	  
 	/*
 	 * @Test(priority=2) public void Test1() { TXC= new
